@@ -39,7 +39,7 @@
     luaPackages.luacheck
 
     # Nix tooling (for nix-config repo)
-    nixfmt-rfc-style
+    nixfmt
     statix
     deadnix
   ];
