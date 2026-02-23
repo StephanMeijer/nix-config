@@ -1,0 +1,11 @@
+# Nix build artifacts
+result
+result-*
+
+# direnv
+.direnv/
+
+# Claude / worktrees
+.claude/
+CLAUDE.md
+.worktrees/

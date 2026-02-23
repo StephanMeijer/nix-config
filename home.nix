@@ -34,5 +34,10 @@
     selene
     gitleaks
     luaPackages.luacheck
+
+    # Nix tooling (for nix-config repo)
+    nixfmt-rfc-style
+    statix
+    deadnix
   ];
 }
