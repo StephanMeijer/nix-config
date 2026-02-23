@@ -24,6 +24,9 @@
     curl
     wget
 
+    # AI coding agents
+    opencode
+
     # Code search (used by Claude/OpenCode skills)
     ast-grep
     universal-ctags
