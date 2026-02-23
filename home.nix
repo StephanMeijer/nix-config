@@ -23,6 +23,7 @@
     shellcheck
     curl
     wget
+    taskwarrior3
 
     # AI coding agents
     opencode
