@@ -9,24 +9,30 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs =
+    { nixpkgs, home-manager, ... }:
     let
       commonModules = [ ./home.nix ];
-    in {
+    in
+    {
       homeConfigurations."steve@workstation" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = commonModules ++ [{
-          home.username = "steve";
-          home.homeDirectory = "/home/steve";
-        }];
+        modules = commonModules ++ [
+          {
+            home.username = "steve";
+            home.homeDirectory = "/home/steve";
+          }
+        ];
       };
 
       homeConfigurations."steve@macbook" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        modules = commonModules ++ [{
-          home.username = "steve";
-          home.homeDirectory = "/Users/steve";
-        }];
+        modules = commonModules ++ [
+          {
+            home.username = "steve";
+            home.homeDirectory = "/Users/steve";
+          }
+        ];
       };
     };
 }
