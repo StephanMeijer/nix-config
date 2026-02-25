@@ -6,10 +6,14 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    # Editor
+    neovim
+
     # Core CLI tools
     ripgrep
     ripgrep-all
     fd
+    bfs
     bat
     eza
     fzf
