@@ -43,6 +43,13 @@
     gitleaks
     luaPackages.luacheck
 
+    # Kubernetes tooling
+    kubectl
+    kubernetes-helm
+    helmfile
+    kustomize
+    krew
+
     # Nix tooling (for nix-config repo)
     nixfmt
     statix
