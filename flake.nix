@@ -18,6 +18,7 @@
       homeConfigurations."steve@workstation" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = commonModules ++ [
+          ./workstation.nix
           {
             home.username = "steve";
             home.homeDirectory = "/home/steve";
