@@ -21,6 +21,8 @@ in
   # Rofi launcher
   programs.rofi = {
     enable = true;
+    theme = "material";
+    font = "mono 24";
   };
 
   # i3 window manager
@@ -60,8 +62,8 @@ in
         "${mod}+Shift+q" = "kill";
 
         # Rofi
-        "${mod}+space" = ''exec "rofi -modi drun,run,window -show drun -theme material -font 'mono 24'"'';
-        "${mod}+Tab" = ''exec "rofi -modi drun,run,window -show window -theme material -font 'mono 24'"'';
+        "${mod}+space" = "exec rofi -modi drun,run,window -show drun";
+        "${mod}+Tab" = "exec rofi -modi drun,run,window -show window";
 
         # Clipmenu
         "${mod}+c" = "exec --no-startup-id env CM_LAUNCHER=rofi clipmenu";
