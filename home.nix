@@ -37,9 +37,6 @@
     universal-ctags
     cscope
 
-    # AI search
-    grepai
-
     # Lua tooling (for nvim config)
     stylua
     selene
