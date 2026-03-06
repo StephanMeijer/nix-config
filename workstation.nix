@@ -12,6 +12,8 @@ in
   # Clipboard manager (clipmenud systemd user service)
   services.clipmenu.enable = true;
 
+  systemd.user.services.clipmenu.Service.Environment = "CM_LAUNCHER=rofi";
+
   home.sessionVariables = {
     CM_LAUNCHER = "rofi";
   };
@@ -62,7 +64,7 @@ in
         "${mod}+Tab" = ''exec "rofi -modi drun,run,window -show window -theme material -font 'mono 24'"'';
 
         # Clipmenu
-        "${mod}+c" = "exec --no-startup-id clipmenu";
+        "${mod}+c" = "exec --no-startup-id env CM_LAUNCHER=rofi clipmenu";
 
         # Volume (pactl + i3blocks refresh)
         "XF86AudioRaiseVolume" =
