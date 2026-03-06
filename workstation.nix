@@ -7,15 +7,24 @@
 
 let
   mod = config.xsession.windowManager.i3.config.modifier;
+  greenclip = "${pkgs.haskellPackages.greenclip}/bin/greenclip";
 in
 {
-  # Clipboard manager (clipmenud systemd user service)
-  services.clipmenu.enable = true;
+  # Clipboard manager (greenclip daemon as systemd user service)
+  home.packages = [ pkgs.haskellPackages.greenclip ];
 
-  systemd.user.services.clipmenu.Service.Environment = "CM_LAUNCHER=rofi";
-
-  home.sessionVariables = {
-    CM_LAUNCHER = "rofi";
+  systemd.user.services.greenclip = {
+    Unit = {
+      Description = "Greenclip clipboard manager";
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${greenclip} daemon";
+      Restart = "always";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
   };
 
   # Rofi launcher
@@ -61,12 +70,10 @@ in
         # Kill
         "${mod}+Shift+q" = "kill";
 
-        # Rofi
-        "${mod}+space" = "exec rofi -modi drun,run,window -show drun";
-        "${mod}+Tab" = "exec rofi -modi drun,run,window -show window";
-
-        # Clipmenu
-        "${mod}+c" = "exec --no-startup-id env CM_LAUNCHER=rofi clipmenu";
+        # Rofi (with clipboard tab via greenclip)
+        "${mod}+space" = "exec rofi -modi 'drun,run,window,clipboard:${greenclip} print' -show drun";
+        "${mod}+Tab" = "exec rofi -modi 'drun,run,window,clipboard:${greenclip} print' -show window";
+        "${mod}+c" = "exec rofi -modi 'clipboard:${greenclip} print' -show clipboard";
 
         # Volume (pactl + i3blocks refresh)
         "XF86AudioRaiseVolume" =
